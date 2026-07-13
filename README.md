@@ -58,7 +58,7 @@ The visualization exposes critical market insights:
 
 ### Interactive Console Sessions
 
-![Console Demo 2](images/CONSOLE_DEMO2.PNG)
+![Console Demo 2](images/CONSOLE_DEMO2.png)
 *Real-time execution monitoring and system status verification*
 
 ![Console Demo 3](images/CONSOLE_DEMO3.png)
