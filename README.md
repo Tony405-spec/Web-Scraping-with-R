@@ -83,30 +83,26 @@ The visualization exposes critical market insights:
 ### Project Structure
 
 ```
-Web-Scraping-with-R-Terrain-Visualization/
+Web-Scraping-with-R/
 │
 ├── README.md                # Documentation
 ├── LICENSE                  # MIT License
-├── .gitignore               # Version control exclusions
-├── WebScrapingDemo.Rproj    # RStudio project configuration
 │
 ├── scripts/
-│   └── terrain_demo.R       # Primary R implementation
+│   └── webscrape_demo.R     # Primary R implementation
 │
 ├── images/
 │   ├── CONSOLE_DEMO1.png    # Console interface screenshot
-│   ├── CONSOLE_DEMO2.PNG    # Console interface screenshot
+│   ├── CONSOLE_DEMO2.png    # Console interface screenshot
 │   ├── CONSOLE_DEMO3.png    # Console interface screenshot
 │   └── DEMO_PLOT.png        # Visualization output
 │
 ├── data/
-│   └── README.md            # Data documentation
+│   └── ReadME.md            # Data documentation
 │
 ├── assets/
-│   ├── WebscrapinginR.gif   # Full demonstration animation
+│   ├── WebscrapingInR.gif   # Full demonstration animation
 │   └── DEMO_GIF.gif         # Interactive exploration animation
-│
-└── requirements.md          # Package dependencies
 ```
 
 ### Technology Stack
@@ -137,17 +133,16 @@ install.packages(c("rvest", "tidyverse", "plotly", "viridis"))
 git clone https://github.com/Tony405-spec/Web-Scraping-with-R.git
 
 # Navigate to project directory
-cd Web-Scraping-with-R-Terrain-Visualization
+cd Web-Scraping-with-R
 
-# Launch in RStudio
-open WebScrapingDemo.Rproj
+# Open the project folder in RStudio or your preferred editor
 ```
 
 ### Quick Start
 
 ```r
 # Load the main script
-source("scripts/terrain_demo.R")
+source("scripts/webscrape_demo.R")
 
 # Initialize the AI interface
 AI()
@@ -155,6 +150,17 @@ AI()
 # Execute complete analysis
 RUN()
 ```
+
+---
+
+## Responsible Scraping
+
+This project targets [Books to Scrape](https://books.toscrape.com/), an educational sandbox intended for scraping practice. When adapting the workflow to another site:
+
+- Review the site's robots.txt, terms, and published API options before scraping.
+- Use timeouts, clear user-agent identification, and conservative request rates.
+- Do not bypass authentication, paywalls, CAPTCHAs, or access controls.
+- Cache or reuse downloaded pages during development to avoid unnecessary repeated requests.
 
 ---
 
