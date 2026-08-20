@@ -115,6 +115,22 @@ RUN <- function(){
   SKYNET()
 }
 
+fetch_html_page <- function(url, timeout_seconds = 10) {
+  response <- httr::GET(
+    url,
+    httr::timeout(timeout_seconds),
+    httr::user_agent("Web-Scraping-with-R educational demo")
+  )
+
+  status <- httr::status_code(response)
+  if (status < 200 || status >= 300) {
+    stop(sprintf("Request to %s failed with HTTP status %s", url, status), call. = FALSE)
+  }
+
+  content <- httr::content(response, as = "text", encoding = "UTF-8")
+  read_html(content)
+}
+
 SKYNET <- function(){
   cat("
 ====================================
@@ -144,7 +160,7 @@ Status: INITIALIZING...
   
   ## ---- STEP 1: LOAD PACKAGES (target: 10-15s) -----------------
   
-  required_pkgs <- c("rvest", "tidyverse", "plotly", "viridis")
+  required_pkgs <- c("httr", "rvest", "tidyverse", "plotly", "viridis")
   
   missing_pkgs <- required_pkgs[!required_pkgs %in% installed.packages()[, "Package"]]
   if (length(missing_pkgs) > 0) {
@@ -160,7 +176,7 @@ Status: INITIALIZING...
   # "Books to Scrape" is a static sandbox site built for practicing
   # rvest - no login, no rate limits, stable HTML structure.
   url <- "https://books.toscrape.com/"
-  page <- read_html(url)
+  page <- fetch_html_page(url, timeout_seconds = 10)
   
   titles <- page %>%
     html_elements("h3 a") %>%
