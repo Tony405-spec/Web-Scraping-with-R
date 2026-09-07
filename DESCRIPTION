@@ -12,6 +12,7 @@ Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 4.0.0)
 Imports:
+    httr,
     plotly,
     rvest,
     tidyverse,

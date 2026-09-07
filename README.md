@@ -123,7 +123,7 @@ Web-Scraping-with-R/
 
 ```r
 # Required R packages installation
-install.packages(c("rvest", "tidyverse", "plotly", "viridis"))
+install.packages(c("httr", "rvest", "tidyverse", "plotly", "viridis"))
 ```
 
 ### Installation
@@ -171,7 +171,13 @@ This project targets [Books to Scrape](https://books.toscrape.com/), an educatio
 ```r
 # Target platform: BooksToScrape.com (educational sandbox)
 url <- "https://books.toscrape.com/"
-page <- read_html(url)
+response <- httr::GET(
+  url,
+  httr::timeout(10),
+  httr::user_agent("Web-Scraping-with-R educational demo")
+)
+stopifnot(httr::status_code(response) >= 200, httr::status_code(response) < 300)
+page <- read_html(httr::content(response, as = "text", encoding = "UTF-8"))
 
 # Structured data extraction pipeline
 titles  <- page %>% html_elements("h3 a") %>% html_attr("title")
